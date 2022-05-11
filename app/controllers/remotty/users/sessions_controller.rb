@@ -2,7 +2,7 @@ class Remotty::Users::SessionsController < Devise::SessionsController
   include Remotty::Users::BaseController
   
   wrap_parameters :user, include: [:email, :password]
-  skip_before_filter :verify_signed_out_user, only: :destroy
+  skip_before_action :verify_signed_out_user, only: :destroy
 
   # POST /resource/sign_in
   # email과 password로 로그인
