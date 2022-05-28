@@ -14,7 +14,7 @@ class Remotty::Users::ConfirmationsController < Devise::ConfirmationsController
     yield resource if block_given?
 
     if resource.errors.empty?
-      render nothing: true, status: :no_content
+      head :no_content
     else
       render_error 'UNAUTHORIZED',
                    resource.errors.full_messages.first,
