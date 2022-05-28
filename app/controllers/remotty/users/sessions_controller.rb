@@ -42,7 +42,7 @@ class Remotty::Users::SessionsController < Devise::SessionsController
     end
     yield resource if block_given?
 
-    render nothing: true, status: :no_content
+    head :no_content
   end
 
   # GET /resource
