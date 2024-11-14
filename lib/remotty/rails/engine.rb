@@ -1,5 +1,4 @@
 require 'rails'
-require 'rack/cors'
 require 'active_model/serializer'
 require 'active_model/array_serializer'
 
@@ -49,31 +48,23 @@ module Remotty::Rails
 
       # Devise
       Devise.setup do |config|
-        config.skip_session_storage = [:http_auth, :token_header_auth]
+        config.skip_session_storage = %i[http_auth token_header_auth]
         config.scoped_views = true
         config.warden do |manager|
           manager.failure_app = Remotty::Rails::Authentication::JsonAuthFailure
-          manager.strategies.add :token_header_authenticable, Remotty::Rails::Authentication::Strategies::TokenHeaderAuthenticable
+          manager.strategies.add :token_header_authenticable,
+                                 Remotty::Rails::Authentication::Strategies::TokenHeaderAuthenticable
           manager.default_strategies(scope: :user).unshift :token_header_authenticable
         end
       end
 
-      # CORS
-      ::Rails.application.config.middleware.use Rack::Cors do
-        allow do
-          origins "*"
-          resource "*", :headers => :any, :methods => [:get, :post, :delete, :put, :patch, :options]
-        end
-      end
-
       # Log filter
-      ::Rails.application.config.filter_parameters += [:password, :password_confirmation, :credit_card]
-    
+      ::Rails.application.config.filter_parameters += %i[password password_confirmation credit_card]
+
       # session for oauth/devise (no cookie)
       ::Rails.application.config.middleware.use ActionDispatch::Flash
       ::Rails.application.config.middleware.use ActionDispatch::Cookies
       ::Rails.application.config.api_only = false
     end
-
   end
 end
