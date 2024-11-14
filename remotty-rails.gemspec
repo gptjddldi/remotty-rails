@@ -24,10 +24,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency         'omniauth-facebook', '>= 1.6.0'
   spec.add_dependency         'omniauth-twitter', '>= 1.0.1'
 
-  spec.add_dependency         'fog', '>= 1.22.0'
+  spec.add_dependency         'fog', '~> 2.0.0'
   spec.add_dependency         'open_uri_redirections', '>= 0.1.4'
   spec.add_dependency         'paperclip', '>= 4.1.1'
-  spec.add_dependency         'rmagick', '>= 2.13.2'
+  spec.add_dependency         'rmagick', '~> 4.2.0'
 
   spec.add_dependency         'kaminari', '>= 0.15.1'
 
