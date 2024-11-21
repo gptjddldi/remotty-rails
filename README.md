@@ -119,9 +119,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'cancan'
 
-# attachment
-gem 'paperclip'
-
 # paging
 gem 'kaminari'
 ```

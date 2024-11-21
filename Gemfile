@@ -11,8 +11,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'cancan'
 
-# File upload
-gem 'paperclip'
 gem 'open_uri_redirections'
 gem 'rmagick', require: false
 gem 'fog'
